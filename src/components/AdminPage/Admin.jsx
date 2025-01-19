@@ -1,6 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import ForOutlet from './ForOutlet'
-import NewQuery from '../NewQuery/NewQuery'
+import MainContainer from '../MainContainer/MainContainer'
 
 
 
@@ -14,7 +14,7 @@ function Admin() {
       {
         // For Implement NewQuery in Admin Page
         path: "",
-        element: <NewQuery />,
+        element: <MainContainer />,
       }
     ]
   }])
