@@ -35,13 +35,13 @@ const NewQuery = () => {
           {/* The Column Name in Table */}
           <thead className="bg-[#BCCCDC] text-gray-600">
             {/* for Add Button for Queries */}
-            <tr>
+            {/* <tr>
               <th colSpan="6" className="text-right px-4 text-black ">
                 <button className="text-right hover:text-gray-700 hover:bg-gray-100 bg-[#bbd4f1] border-[#b6c9dd] border-2 rounded-md p-1 ">
                   Add
                 </button>
               </th>
-            </tr>
+            </tr> */}
             {/* For Column Name */}
             <tr>
               <th className="px-4 py-2 text-left">Name</th>
