@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
+import useTheme, { ThemeProvider } from '../../Context/NewContext';
+
 
 // Creating Demo Data for NewQueries
 const demoData = [
@@ -16,7 +18,6 @@ const demoData = [
 
 const NewQuery = () => {
   const [openIndex, setOpenIndex] = useState(null); // Track which dropdown is open
-
   const toggleDropdown = (index) => {
     // Toggle the specific row's dropdown
     if (openIndex === index) {
@@ -25,23 +26,18 @@ const NewQuery = () => {
       setOpenIndex(index); // Open the selected dropdown
     }
   };
+ 
+  const {isOpenForSideBar} = useTheme()
 
   return (
-    // For Table To show NewQueries
-    <div className="p-6">
+    <ThemeProvider value={{isOpenForSideBar}}>
+    {/* // For Table To show NewQueries */}
+    <div className={`flex-1 bg-gray-100 p-6 transition-all duration-300 ${isOpenForSideBar ? 'ml-64' : 'ml-20'} p-6`}>
       <h1 className="text-3xl font-bold text-center mb-8">New Queries</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto bg-white border-separate border border-gray-200 rounded-lg shadow-md">
           {/* The Column Name in Table */}
           <thead className="bg-[#BCCCDC] text-gray-600">
-            {/* for Add Button for Queries */}
-            {/* <tr>
-              <th colSpan="6" className="text-right px-4 text-black ">
-                <button className="text-right hover:text-gray-700 hover:bg-gray-100 bg-[#bbd4f1] border-[#b6c9dd] border-2 rounded-md p-1 ">
-                  Add
-                </button>
-              </th>
-            </tr> */}
             {/* For Column Name */}
             <tr>
               <th className="px-4 py-2 text-left">Name</th>
@@ -68,7 +64,6 @@ const NewQuery = () => {
 
                 {/* For Approve Button */}
                 <td className="px-4 py-2 text-center">
-
                   {/* For DropDown menu */}
                   <div className="relative inline-block">
                     {/* Toggle specific row  */}
@@ -100,6 +95,7 @@ const NewQuery = () => {
         </table>
       </div>
     </div>
+    </ThemeProvider>
   );
 };
 

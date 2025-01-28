@@ -1,7 +1,10 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import ForOutlet from './ForOutlet'
-import MainContainer from '../MainContainer/MainContainer'
-
+import Professors from '../NewQuery/Professors'
+import Student from '../NewQuery/Student'
+import Courses from '../NewQuery/Courses'
+import Departments from '../NewQuery/Departments'
+import NewQuery from '../NewQuery/NewQuery'
 
 
 
@@ -12,10 +15,25 @@ function Admin() {
     element: <ForOutlet />,
     children: [
       {
-        // For Implement NewQuery in Admin Page
         path: "",
-        element: <MainContainer />,
-      }
+        element: <NewQuery />,
+      },
+      {
+        path: "\Professors",
+        element: <Professors />,
+      },
+      {
+        path: "\Student",
+        element: <Student />,
+      },
+      {
+        path: "\Courses",
+        element: <Courses />,
+      },
+      {
+        path: "\Departments",
+        element: <Departments />,
+      },
     ]
   }])
 
