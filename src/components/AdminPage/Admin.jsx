@@ -1,50 +1,46 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import ForOutlet from './ForOutlet'
-import Professors from '../NewQuery/Professors'
-import Student from '../NewQuery/Student'
-import Courses from '../NewQuery/Courses'
-import Departments from '../NewQuery/Departments'
-import NewQuery from '../NewQuery/NewQuery'
-
-
+import { RouterProvider, createBrowserRouter } from 'react-router-dom' // Importing necessary modules from 'react-router-dom'
+import ForOutlet from './ForOutlet' // Importing the outlet component for rendering child routes
+import Professors from '../NewQuery/Professors' // Importing the Professors component for routing
+import Student from '../NewQuery/Student' // Importing the Student component for routing
+import Courses from '../NewQuery/Courses' // Importing the Courses component for routing
+import Circulation from '../NewQuery/Circulation' // Importing the Circulation component for routing
+import NewQuery from '../NewQuery/NewQuery' // Importing the NewQuery component for the default route
 
 function Admin() {
-  // Creating Router For Admin page
+  // Creating the router object using createBrowserRouter with defined routes
   const router = createBrowserRouter([{
-    path: "/",
-    element: <ForOutlet />,
+    path: "/", // The root path of the admin page
+    element: <ForOutlet />, // The main component to render (used as a layout with child routes)
     children: [
       {
-        path: "",
-        element: <NewQuery />,
+        path: "", // The default route under / (empty string)
+        element: <NewQuery />, // Component to render when navigating to the default route
       },
       {
-        path: "\Professors",
-        element: <Professors />,
+        path: "\Professors", // Path for professors page (with backslash)
+        element: <Professors />, // Component to render when navigating to /Professors
       },
       {
-        path: "\Student",
-        element: <Student />,
+        path: "\Student", // Path for student page (with backslash)
+        element: <Student />, // Component to render when navigating to /Student
       },
       {
-        path: "\Courses",
-        element: <Courses />,
+        path: "\Courses", // Path for courses page (with backslash)
+        element: <Courses />, // Component to render when navigating to /Courses
       },
       {
-        path: "\Departments",
-        element: <Departments />,
+        path: "\Circulation", // Path for circulation page (with backslash)
+        element: <Circulation />, // Component to render when navigating to /Circulation
       },
     ]
   }])
 
   return (
     <>
-      {/* Using The Router Provider */}
+      {/* Using the RouterProvider to wrap the router setup and make it available throughout the app */}
       <RouterProvider router={router} />
     </>
   )
-
-  
 }
 
-export default Admin
+export default Admin // Export the Admin component to use in other parts of the app

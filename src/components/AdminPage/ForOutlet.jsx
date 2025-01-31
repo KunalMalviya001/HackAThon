@@ -1,20 +1,21 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import Header from '../Header/Header'
-import { ThemeProvider } from '../../Context/NewContext'
+import React from 'react' // Import React to use JSX
+import { Outlet } from 'react-router-dom' // Import Outlet to render the child routes
+import Header from '../Header/Header' // Import the Header component for the Admin page
+import { ThemeProvider } from '../../Context/NewContext' // Import the ThemeProvider to manage theme context
 
 function ForOutlet() {
   return (
     <>
-    < ThemeProvider>
-    {/* Use header in Admin Page */}
-    <Header/>
+      {/* Wrapping the whole component in ThemeProvider to provide the theme context */}
+      <ThemeProvider>
+        {/* Rendering the Header component in the Admin page */}
+        <Header />
 
-    {/* Use Outlet for Router */}
-    <Outlet/>
-    </ThemeProvider>
+        {/* This is where child route components will be rendered */}
+        <Outlet />
+      </ThemeProvider>
     </>
   )
 }
 
-export default ForOutlet
+export default ForOutlet // Export the ForOutlet component to be used in other parts of the app

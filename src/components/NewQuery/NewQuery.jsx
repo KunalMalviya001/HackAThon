@@ -1,102 +1,137 @@
-import React, { useState,useContext } from 'react';
-import useTheme, { ThemeProvider } from '../../Context/NewContext';
-
-
-// Creating Demo Data for NewQueries
-const demoData = [
-  { name: 'John', age: 25, course: 'bsc', number: 9876543210 },
-  { name: 'Sarah', age: 22, course: 'msc', number: 9871234567 },
-  { name: 'Alice', age: 24, course: 'phd', number: 9988776655 },
-  { name: 'David', age: 28, course: 'mba', number: 9123456789 },
-  { name: 'Eve', age: 26, course: 'btech', number: 9234567890 },
-  { name: 'Michael', age: 30, course: 'msc', number: 9345678901 },
-  { name: 'Sophia', age: 23, course: 'mtech', number: 9456789012 },
-  { name: 'Daniel', age: 27, course: 'bsc', number: 9567890123 },
-  { name: 'Olivia', age: 21, course: 'msc', number: 9678901234 },
-  { name: 'Liam', age: 29, course: 'mba', number: 9789012345 },
-];
+import React from 'react';
+import useTheme from '../../Context/NewContext'; // Make sure to adjust the path if needed
 
 const NewQuery = () => {
-  const [openIndex, setOpenIndex] = useState(null); // Track which dropdown is open
-  const toggleDropdown = (index) => {
-    // Toggle the specific row's dropdown
-    if (openIndex === index) {
-      setOpenIndex(null); // Close it if already open
-    } else {
-      setOpenIndex(index); // Open the selected dropdown
-    }
-  };
- 
-  const {isOpenForSideBar} = useTheme()
+    const { isOpenForSideBar } = useTheme(); // Access the theme context
 
-  return (
-    <ThemeProvider value={{isOpenForSideBar}}>
-    {/* // For Table To show NewQueries */}
-    <div className={`flex-1 bg-gray-100 p-6 transition-all duration-300 ${isOpenForSideBar ? 'ml-64' : 'ml-20'} p-6`}>
-      <h1 className="text-3xl font-bold text-center mb-8">New Queries</h1>
-      <div className="overflow-x-auto">
-        <table className="min-w-full table-auto bg-white border-separate border border-gray-200 rounded-lg shadow-md">
-          {/* The Column Name in Table */}
-          <thead className="bg-[#BCCCDC] text-gray-600">
-            {/* For Column Name */}
-            <tr>
-              <th className="px-4 py-2 text-left">Name</th>
-              <th className="px-4 py-2 text-left">Age</th>
-              <th className="px-4 py-2 text-left">Course</th>
-              <th className="px-4 py-2 text-left">Number</th>
-              <th className="px-4 py-2 text-center">Approve</th>
-            </tr>
-          </thead>
+    return (
+        <>
+            {/* Sidebar content */}
+            <div className={`flex-1 bg-gray-100 p-6 transition-all duration-300 ${isOpenForSideBar ? 'ml-64' : 'ml-20'}`}>
+                {/* Stats Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div className="bg-white p-4 rounded border border-gray-200">
+                        <h3 className="text-gray-500 text-sm">Total Students</h3>
+                        <p className="text-2xl font-semibold">2,453</p>
+                        <div className="flex items-center mt-2">
+                            <span className="text-green-500 text-sm">+12%</span>
+                            <span className="text-gray-400 text-sm ml-2">from last month</span>
+                        </div>
+                    </div>
+                    <div className="bg-white p-4 rounded border border-gray-200">
+                        <h3 className="text-gray-500 text-sm">Total Faculty</h3>
+                        <p className="text-2xl font-semibold">156</p>
+                        <div className="flex items-center mt-2">
+                            <span className="text-green-500 text-sm">+5%</span>
+                            <span className="text-gray-400 text-sm ml-2">from last month</span>
+                        </div>
+                    </div>
+                    <div className="bg-white p-4 rounded border border-gray-200">
+                        <h3 className="text-gray-500 text-sm">Active Events</h3>
+                        <p className="text-2xl font-semibold">23</p>
+                        <div className="flex items-center mt-2">
+                            <span className="text-red-500 text-sm">-2%</span>
+                            <span className="text-gray-400 text-sm ml-2">from last month</span>
+                        </div>
+                    </div>
+                    <div className="bg-white p-4 rounded border border-gray-200">
+                        <h3 className="text-gray-500 text-sm">Books in Circulation</h3>
+                        <p className="text-2xl font-semibold">847</p>
+                        <div className="flex items-center mt-2">
+                            <span className="text-green-500 text-sm">+8%</span>
+                            <span className="text-gray-400 text-sm ml-2">from last month</span>
+                        </div>
+                    </div>
+                </div>
 
-          {/* Table Body for table */}
-          <tbody>
-            {/* use map function to gather and show data */}
-            {demoData.map((student, index) => (
-              // For Data showing
-              <tr
-                key={index}
-                className="odd:bg-gray-50 even:bg-gray-100 hover:bg-gray-200"
-              >
-                <td className="px-4 py-2">{student.name}</td>
-                <td className="px-4 py-2">{student.age}</td>
-                <td className="px-4 py-2">{student.course}</td>
-                <td className="px-4 py-2">{student.number}</td>
+                {/* Table Actions */}
+                <div className="bg-white border border-gray-200 rounded-lg mb-6">
+                    <div className="p-4 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-center">
+                        <h2 className="text-lg font-semibold">Recent Inquiries</h2>
+                        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                            <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors w-full sm:w-auto">
+                                Add Inquiry
+                            </button>
+                            <select className="px-4 py-2 border border-gray-300 rounded w-full sm:w-auto">
+                                <option>Bulk Actions</option>
+                                <option>Delete Selected</option>
+                                <option>Update Status</option>
+                            </select>
+                        </div>
+                    </div>
 
-                {/* For Approve Button */}
-                <td className="px-4 py-2 text-center">
-                  {/* For DropDown menu */}
-                  <div className="relative inline-block">
-                    {/* Toggle specific row  */}
-                    <button onClick={() => toggleDropdown(index)} className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md">
-                      Action
-                      <svg className="w-2.5 h-2.5 ml-2 transform transition-transform duration-300 ease-in-out" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
-                      </svg>
-                    </button>
-                    {/* For showing Menu */}
-                    {openIndex === index && (
-                      <ul className="absolute left-0 w-full mt-2 bg-white border border-gray-300 shadow-md rounded-md z-50">
-                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                          Edit
-                        </li>
-                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                          Delete
-                        </li>
-                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                          Option
-                        </li>
-                      </ul>
-                    )}
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-    </ThemeProvider>
-  );
+                    {/* Table */}
+                    <div className="overflow-x-auto">
+                        <table className="w-full">
+                            <thead className="bg-gray-50">
+                                <tr>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                                        <input type="checkbox" className="rounded" />
+                                    </th>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Inquiry ID</th>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-200">
+                                <tr className="hover:bg-gray-50">
+                                    <td className="px-6 py-4"><input type="checkbox" className="rounded" /></td>
+                                    <td className="px-6 py-4">#INQ001</td>
+                                    <td className="px-6 py-4">John Doe</td>
+                                    <td className="px-6 py-4">Student</td>
+                                    <td className="px-6 py-4">
+                                        <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Active</span>
+                                    </td>
+                                    <td className="px-6 py-4">2024-02-20</td>
+                                    <td className="px-6 py-4">
+                                        <button className="text-blue-600 hover:text-blue-800 mr-2">Edit</button>
+                                        <button className="text-red-600 hover:text-red-800">Delete</button>
+                                    </td>
+                                </tr>
+                                {/* Repeat rows as needed */}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {/* Pagination */}
+                    <div className="px-4 py-3 border-t border-gray-200 flex items-center justify-between">
+                        <div className="flex-1 flex justify-between sm:hidden">
+                            <button className="px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                Previous
+                            </button>
+                            <button className="px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                Next
+                            </button>
+                        </div>
+                        <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                            <div>
+                                <p className="text-sm text-gray-700">
+                                    Showing <span className="font-medium">1</span> to <span className="font-medium">10</span> of
+                                    <span className="font-medium">97</span> results
+                                </p>
+                            </div>
+                            <div>
+                                <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+                                    <button className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                        Previous
+                                    </button>
+                                    <button className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">1</button>
+                                    <button className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">2</button>
+                                    <button className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">3</button>
+                                    <button className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                        Next
+                                    </button>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 };
 
 export default NewQuery;
